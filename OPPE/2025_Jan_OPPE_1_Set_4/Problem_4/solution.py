@@ -1,0 +1,3 @@
+def first_non_repeating_char(s: str)->str:
+    """Finds the first non-repeating character in a string."""
+    ...
