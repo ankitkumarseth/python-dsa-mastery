@@ -1,142 +1,97 @@
-# mapping
-
-
 def is_greater_than_5(numbers: list) -> list:
-    '''
-    Given a list of numbers, return a list of bools corresponding to whether the number is greater than 5
+    """Given a list of numbers, return a list of bools corresponding to whether the number is greater than 5
 
-    Example Input:
-    is_greater_than_5([3, 4, 5, 6, 7])
+Example Input:
+is_greater_than_5([3, 4, 5, 6, 7])
 
-    Expected Output:
-    [False, False, False, True, True]
-    '''
-    ...
-
-# filtering
-
+Expected Output:
+[False, False, False, True, True]"""
+    pass
 
 def filter_less_than_5(numbers: list) -> list:
-    '''
-    Given an list of numbers, return a list of numbers that are less than 5
+    """Given an list of numbers, return a list of numbers that are less than 5
 
-    Example Input:
-    filter_less_than_5([3, 4, 5, 6, 7])
+Example Input:
+filter_less_than_5([3, 4, 5, 6, 7])
 
-    Expected Output:
-    [3, 4]
-    '''
-    ...
-
-# aggregation with filtering
-
+Expected Output:
+[3, 4]"""
+    pass
 
 def sum_of_two_digit_numbers(numbers: list):
-    '''
-    Given a list of numbers find the sum of all two_digit_numbers.
+    """Given a list of numbers find the sum of all two_digit_numbers.
 
-    Example Input:
-    sum_of_two_digit_numbers([8, 9, 10, 11, 12])
+Example Input:
+sum_of_two_digit_numbers([8, 9, 10, 11, 12])
 
-    Expected Output:
-    33
-    '''
-    ...
-
-# aggregation with mapping
-
+Expected Output:
+33"""
+    pass
 
 def is_all_has_a(words: list) -> bool:
-    '''
-    Given a list of words check if all words has the letter a(case insensitive) in it.
+    """Given a list of words check if all words has the letter a(case insensitive) in it.
 
-    Example Input:
-    is_all_has_a(["Apple", "Orange", "Banana"])
+Example Input:
+is_all_has_a(["Apple", "Orange", "Banana"])
 
-    Expected Output:
-    True
-    '''
-    ...
-
-# enumerate
-
+Expected Output:
+True"""
+    pass
 
 def print_with_numbering(items):
-    '''
-    Print a list in multiple lines with numbering.
+    """Print a list in multiple lines with numbering.
 
-    Example Input:
-    print_with_numbering(["Apple", "Orange", "Banana"])
+Example Input:
+print_with_numbering(["Apple", "Orange", "Banana"])
 
-    Expected Output:
-    1. Apple
-    2. Orange
-    3. Banana
-    '''
-    ...
-
-# zip
-
+Expected Output:
+1. Apple
+2. Orange
+3. Banana"""
+    pass
 
 def parallel_print(countries, capitals):
-    '''
-    Print the countries and capitals in multiple line seperated by a hyphen with space around it.
+    """Print the countries and capitals in multiple line seperated by a hyphen with space around it.
 
-    Example Input:
-    parallel_print(
-      ["United States", "Brazil", "Nigeria"],
-      ["Washington, D.C.", "Brasilia", "Abuja"]
-    )
+Example Input:
+parallel_print(
+  ["United States", "Brazil", "Nigeria"],
+  ["Washington, D.C.", "Brasilia", "Abuja"]
+)
 
-    Expected Output:
-    United States - Washington, D.C.
-    Brazil - Brasilia
-    Nigeria - Abuja
-    '''
-    ...
-
-# key value list to dict
-
+Expected Output:
+United States - Washington, D.C.
+Brazil - Brasilia
+Nigeria - Abuja"""
+    pass
 
 def make_dict(keys, values):
-    '''
-    Create a dict with keys and values
+    """Create a dict with keys and values
 
-    Example Input:
-    make_dict("abcd", [1, 2, 3, 4])
+Example Input:
+make_dict("abcd", [1, 2, 3, 4])
 
-    Expected Output:
-    {'a': 1, 'b': 2, 'c': 3, 'd': 4}
-    '''
-    ...
-
-# enumerate with filtering and map
-
+Expected Output:
+{'a': 1, 'b': 2, 'c': 3, 'd': 4}"""
+    pass
 
 def indices_of_big_words(words) -> list:
-    '''
-    Given a list of words, find the indices of the big words(length greater than 5).
+    """Given a list of words, find the indices of the big words(length greater than 5).
 
-    Example Input:
-    indices_of_big_words(["Apple", "Banana", "Orange", "Kiwi", "Cherry"])
+Example Input:
+indices_of_big_words(["Apple", "Banana", "Orange", "Kiwi", "Cherry"])
 
-    Expected Output:
-    [1, 2, 4]
-    '''
-    ...
-
-# zip with mapping and aggregation
-
+Expected Output:
+[1, 2, 4]"""
+    pass
 
 def decode_rle(chars: str, repeats: list) -> str:
-    '''
-    Create a string with i-th char from chars repeated i-th value of repeats number of times.
-    Note rle refers to Run-length encoding
+    """Create a string with i-th char from chars repeated i-th value of repeats number of times.
+Note rle refers to Run-length encoding
 
-    Example Input:
-    decode_rle("abcd", [2, 4, 3, 1])
+Example Input:
+decode_rle("abcd", [2, 4, 3, 1])
 
-    Expected Output:
-    aabbbbcccd
-    '''
-    ...
+Expected Output:
+aabbbbcccd"""
+    pass
