@@ -1,3 +1,6 @@
+from collections import defaultdict
+
+
 def total_price(fruit_prices: dict, purchases) -> float:
     '''
     Compute the fruit prices give the quantity of each fruit. Do not use the sum function.
@@ -18,7 +21,10 @@ def total_price(fruit_prices: dict, purchases) -> float:
     Expected Output:
     38.0
     '''
-    ...
+    total_price = 0
+    for fruit, quantity in purchases:
+        total_price += fruit_prices[fruit] * quantity
+    return total_price
 
 def total_price_no_loops(fruit_prices: dict, purchases) -> float:
     '''
@@ -33,7 +39,7 @@ def total_price_no_loops(fruit_prices: dict, purchases) -> float:
     Expected Output:
     38.0
     '''
-    ...
+    return sum(fruit_prices[fruit] * quantity for fruit, quantity in purchases)
 
 def find_cheapest_fruit(fruit_prices: dict) -> str:
     '''
@@ -51,7 +57,14 @@ def find_cheapest_fruit(fruit_prices: dict) -> str:
     Expected Output:
     "Banana"
     '''
-    ...
+    lowest_price = float('inf')
+    cheapest_fruit = ''
+    for fruit, price in fruit_prices.items():
+        if price < lowest_price:
+            lowest_price = price
+            cheapest_fruit = fruit
+    return cheapest_fruit
+
 
 def find_cheapest_fruit_no_loops(fruit_prices: dict) -> str:
     '''
@@ -63,7 +76,7 @@ def find_cheapest_fruit_no_loops(fruit_prices: dict) -> str:
     Expected Output:
     "Banana"
     '''
-    ...
+    return min(fruit_prices, key=fruit_prices.get)
 
 # grouping
 
@@ -88,7 +101,20 @@ def group_fruits(fruits: list):
     Expected Output:
     {'A': ['Apple', 'Avocado'], 'B': ['Banana', 'Blackberry'], 'C': ['Cherry', 'Cranberry'], 'G': ['Grape'], 'M': ['Mango']}
     '''
-    ...
+
+    grouped_fruits = {}
+    for fruit in sorted(fruits):
+        grouped_fruits[fruit[0]] = grouped_fruits.get(fruit[0], []) + [fruit]
+    return grouped_fruits
+
+    # grouped_fruits = defaultdict(list)
+    # for fruit in sorted(fruits):
+    #     grouped_fruits[fruit[0]].append(fruit)
+    # return dict(grouped_fruits)
+
+    # 1-liner Dictionary Comprehension (Not necessarily the fastest, but elegant)
+    # sorted_fruits = sorted(fruits)
+    # return {letter: [f for f in sorted_fruits if f[0] == letter] for letter in set(f[0] for f in fruits)}
 
 # binning
 
@@ -113,4 +139,18 @@ def bin_fruits(fruit_prices):
     Expected Output:
     {'affordable': {'Banana', 'Grapes', 'Orange', 'Papaya'}, 'cheap': {'Amla', 'Mango'}, 'costly': {'Apple', 'Jackfruit'}}
     '''
-    ...
+    fruit_categories = {'cheap': set(), 'affordable': set(), 'costly': set()}
+    for fruit, price in fruit_prices.items():
+        if price < 3:
+            fruit_categories['cheap'].add(fruit)
+        elif 3 <= price <= 6:
+            fruit_categories['affordable'].add(fruit)
+        else:
+            fruit_categories['costly'].add(fruit)
+    return fruit_categories
+
+    # Elegant solution using set comprehension -> But slower O(3N) as compared to above
+    # return {'cheap' : {fruit for fruit, price in fruit_prices.items() if price < 3},
+    #         'affordable' : {fruit for fruit, price in fruit_prices.items() if 3 <= price <= 6},
+    #         'costly' : {fruit for fruit, price in fruit_prices.items() if price > 6}
+    #         }

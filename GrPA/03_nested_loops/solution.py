@@ -1,3 +1,5 @@
+from itertools import permutations
+
 task = input()
 
 if task == 'permutation':
@@ -13,7 +15,14 @@ if task == 'permutation':
     ca
     cb
     """
-    ...
+    s = input()
+    for i in range(len(s)):
+        for j in range(len(s)):
+            if i != j:
+                print(s[i] + s[j])
+                
+    # --- Pythonic Alternative (Itertools) ---
+    # [print("".join(p)) for p in permutations(s, 2)]
 
 elif task == 'sorted_permutation':
     """
@@ -25,7 +34,14 @@ elif task == 'sorted_permutation':
     ab
     ac
     """
-    ...
+    s = input()
+    for i in range(len(s)):
+        for j in range(len(s)):
+            if i != j and s[i] < s[j]:
+                print(s[i] + s[j])
+                
+    # --- Pythonic Alternative (Itertools + Filter) ---
+    # [print(a + b) for a, b in permutations(s, 2) if a < b]
 
 elif task == 'repeat_the_repeat':
     """
@@ -37,7 +53,16 @@ elif task == 'repeat_the_repeat':
     123
     123
     """
-    ...
+    n = int(input())
+    for i in range(1, n + 1):
+        row = ''
+        for j in range(1, n + 1):
+            row += str(j)
+        print(row)
+        
+    # --- Pythonic Alternative (Map & Generator Unpacking) ---
+    # row = "".join(map(str, range(1, n + 1)))
+    # print(*(row for _ in range(n)), sep='\n')
 
 elif task == 'repeat_incrementally':
     """
@@ -50,7 +75,15 @@ elif task == 'repeat_incrementally':
     123
     1234
     """
-    ...
+    n = int(input())
+    for i in range(1, n + 1):
+        row = ''
+        for j in range(1, i+1):
+            row += str(j)
+        print(row)
+        
+    # --- Pythonic Alternative (Map & Generator Unpacking) ---
+    # print(*("".join(map(str, range(1, i + 1))) for i in range(1, n + 1)), sep='\n')
 
 elif task == 'increment_and_decrement':
     """
@@ -62,7 +95,15 @@ elif task == 'increment_and_decrement':
     121
     12321
     """
-    ...
+    n = int(input())
+    for i in range(1, n + 1):
+        row = ''
+        for j in range(1, i + 1):
+            row += str(j)
+        print(row + row[-2::-1])
+        
+    # --- Pythonic Alternative (Walrus Operator & Generator) ---
+    # print(*( (r := "".join(map(str, range(1, i + 1)))) + r[-2::-1] for i in range(1, n + 1) ), sep='\n')
 
 else:
     print("Invalid Task")

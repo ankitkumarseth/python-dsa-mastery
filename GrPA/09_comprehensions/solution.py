@@ -6,7 +6,7 @@ def sum_of_squares(numbers):
     Expected Output:
     30
     """
-    ...
+    return sum( n ** 2 for n in numbers)
 
 def total_cost(cart):
     """
@@ -16,7 +16,7 @@ def total_cost(cart):
     Expected Output:
     19
     """
-    ...
+    return sum(quantity * price for quantity, price in cart)
 
 def abbreviation(sentence):
     """
@@ -26,7 +26,7 @@ def abbreviation(sentence):
     Expected Output:
     O.W.L.
     """
-    ...
+    return ''.join(w[0].upper()+'.' for w in sentence.split())
 
 def palindromes(words):
     """
@@ -36,7 +36,8 @@ def palindromes(words):
     Expected Output:
     ['noon', 'dad', 'madam']
     """
-    ...
+    # return list(filter(lambda w: w == w[::-1], words))
+    return [w for w in words if w == w[::-1]]
 
 def all_chars_from_big_words(sentence):
     """
@@ -46,7 +47,8 @@ def all_chars_from_big_words(sentence):
     Expected Output:
     {'a', 'c', 'e', 'f', 'g', 'h', 'i', 'l', 'm', 'n', 'o', 'p', 'r', 's', 't', 'u'}
     """
-    ...
+    return {char for word in sentence.lower().split() if len(word) > 5 for char in word}
+    # return set(''.join(filter(lambda w: len(w) > 5, sentence.lower().split())))
 
 def flatten(lol):
     """
@@ -60,7 +62,7 @@ def flatten(lol):
     Expected Output:
     [1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4]
     """
-    ...
+    return [i for inner_list in lol for i in inner_list]
 
 def unflatten(items, n_rows):
     """
@@ -70,7 +72,8 @@ def unflatten(items, n_rows):
     Expected Output:
     [[1, 2, 3, 4], [1, 2, 3, 4], [1, 2, 3, 4]]
     """
-    ...
+    cols = len(items) // n_rows
+    return [items[i * cols : (i + 1) * cols] for i in range(n_rows)]
 
 def make_identity_matrix(m):
     """
@@ -80,7 +83,13 @@ def make_identity_matrix(m):
     Expected Output:
     [[1, 0, 0], [0, 1, 0], [0, 0, 1]]
     """
-    ...
+    # M = [[0] * m for _ in range(m)]
+    # for i in range(m):
+    #     for j in range(m):
+    #         if i == j:
+    #             M[i][j] = 1
+    # return M
+    return [[1 if i == j else 0 for j in range(m)] for i in range(m)]
 
 def make_lower_triangular_matrix(m):
     """
@@ -90,4 +99,4 @@ def make_lower_triangular_matrix(m):
     Expected Output:
     [[1, 0, 0], [1, 2, 0], [1, 2, 3]]
     """
-    ...
+    return [[j+1 if i >= j else 0 for j in range(m)] for i in range(m)]

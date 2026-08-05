@@ -13,7 +13,8 @@ def format_as_second_comma_first(tup: tuple) -> str:
     >>> format_as_second_comma_first((1.2, 3.4))
     '3.4, 1.2'
     '''
-    ...
+    first, second = tup
+    return f'{str(second)}, {str(first)}'
 
 
 def even_first_odd_reversed(s: str) -> str:
@@ -35,7 +36,7 @@ def even_first_odd_reversed(s: str) -> str:
     >>> even_first_odd_reversed('abracadabra')
     'arcdbaraaab'
     '''
-    ...
+    return s[::2] + s[1::2][::-1]
 
 
 def is_palindrome(n: int) -> bool:
@@ -56,4 +57,4 @@ def is_palindrome(n: int) -> bool:
     >>> is_palindrome(-121)
     False
     '''
-    ...
+    return str(n) == str(n)[::-1]

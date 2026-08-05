@@ -1,3 +1,4 @@
+from collections import deque
 def rotate_list(lst: list, k: int) -> list:
     '''
     Given a list of items and an integer k, rotate the list to the right by k steps.
@@ -15,7 +16,14 @@ def rotate_list(lst: list, k: int) -> list:
     >>> rotate_list(['a', 'b', 'c', 'd', 'e'], 3)
     ['c', 'd', 'e', 'a', 'b']
     '''
-    ...
+
+    k = (k % len(lst))
+    return lst[-k:] + lst[:-k]
+
+    # --- Pythonic Alternative (Optimized) ---
+    # d = deque(lst)
+    # d.rotate(k)
+    # return list(d)
 
 def swap_alternate_elements(t):
     '''
@@ -33,7 +41,13 @@ def swap_alternate_elements(t):
     >>> swap_alternate_elements(('a', 'b', 'c', 'd'))
     ('b', 'a', 'd', 'c')
     '''
-    ...
+    L = [None] * len(t)
+    L[0::2] = t[1::2]
+    L[1::2] = t[0::2]
+    return tuple(L)
+
+    # --- Pythonic Alternative (1-liner) ---
+    # return tuple(x for pair in zip(t[1::2], t[0::2]) for x in pair)
 
 def in_exactly_one(l1: list, l2: list) -> set:
     '''
@@ -51,7 +65,7 @@ def in_exactly_one(l1: list, l2: list) -> set:
     >>> in_exactly_one([1, 2, 3], [3, 4, 5])
     {1, 2, 4, 5}
     '''
-    ...
+    return set(l1) ^ set(l2)
 
 def unique_vowels(s: str) -> set:
     '''
@@ -71,7 +85,13 @@ def unique_vowels(s: str) -> set:
     >>> unique_vowels('Ian Avinkov')
     {'I','A','a','i','o'}
     '''
-    ...
+    vowels = set('aeiouAEIOU')
+
+    return vowels.intersection(s)
+    
+    # --- Pythonic Alternative (Set operator) ---
+    # return vowels & set(s)
+
 
 def common_char_sorted_str(s1:str, s2:str) -> str:
     '''
@@ -90,4 +110,4 @@ def common_char_sorted_str(s1:str, s2:str) -> str:
     >>> common_char_sorted_str('abcde', 'edfci')
     'cde'
     '''
-    ...
+    return ''.join(sorted(set(s1) & set(s2)))

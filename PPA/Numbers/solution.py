@@ -12,7 +12,10 @@ def percentage_increased(original: float, new: float) -> float:
     >>> percentage_increased(80, 80)
     0.0
     '''
-    ...
+    if original == 0:
+        return 0.0
+    result= (new - original) / original * 100
+    return round(result, 2)
 
 def is_ten_digit_even(number: int) -> bool:
     '''
@@ -30,7 +33,10 @@ def is_ten_digit_even(number: int) -> bool:
     >>> is_ten_digit_even(-9289479278)
     True
     '''
-    ...
+    return number % 2 == 0 and len(str(abs(number)))==10
+
+    # --- Pythonic Alternative (Math > String cast) ---
+    # return number % 2 == 0 and 1000000000 <= abs(number) <= 9999999999
 
 def arithmetic_operations(tup: tuple) -> tuple:
     '''
@@ -46,4 +52,5 @@ def arithmetic_operations(tup: tuple) -> tuple:
     >>> arithmetic_operations((-1, 1))
     (0, -2, -1, -1)
     '''
-    ...
+    a, b = tup
+    return a + b, a - b, a * b, a // b

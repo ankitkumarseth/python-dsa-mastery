@@ -18,7 +18,18 @@ if task == 'factors':
     14
     28
     """
-    ...
+    n = int(input())
+    
+    # Standard Loop Approach
+    for i in range(1, n + 1):
+        if n % i  == 0:
+            print(i)
+            
+    # Pythonic Alternative 1 (Generator Unpacking)
+    # print(*(i for i in range(1, n + 1) if n % i == 0), sep='\n')
+    
+    # Pythonic Alternative 2 (String Join)
+    # print('\n'.join(str(i) for i in range(1, n + 1) if n % i == 0))
 
 elif task == 'find_min':
     """
@@ -33,7 +44,22 @@ elif task == 'find_min':
     Expected Output:
     5
     """
-    ...
+    n = int(input())
+    
+    # Standard Loop Approach
+    minimum = int(input())
+    for _ in range(n-1):
+        val = int(input())
+        if val < minimum:
+            minimum = val
+    print(minimum)
+
+    # Pythonic Alternative 1 (Sorting - O(N log N))
+    # print(sorted(int(input()) for _ in range(n))[0])
+
+    # Pythonic Alternative 2 (functools.reduce - O(N) and optimal)
+    # from functools import reduce
+    # print(reduce(lambda a, b: a if a < b else b, (int(input()) for _ in range(n))))
 
 elif task == 'prime_check':
     """
@@ -43,7 +69,21 @@ elif task == 'prime_check':
     Expected Output:
     True
     """
-    ...
+    n = int(input())
+    if n <= 1:
+        print(False)
+    else:
+        for i in range(2, int(n ** 0.5) + 1):
+            if n % i == 0:
+                print(False)
+                break
+        else:
+            # We only get here if the loop NEVER broke!
+            print(True)
+
+    # Pythonic Alternative 2 (Using all() - OPPE approved)
+    # n = int(input())
+    # print(False if n <= 1 else all(n % i != 0 for i in range(2, int(n**0.5) + 1)))
 
 elif task == 'is_sorted':
     """
@@ -53,7 +93,19 @@ elif task == 'is_sorted':
     Expected Output:
     True
     """
-    ...
+
+    # Loop Alternative (O(N) time complexity)
+    s = input()
+    is_sorted = True
+    for i in range(len(s) - 1):
+        if s[i] > s[i+1]:
+            is_sorted = False
+            break
+    print(is_sorted)
+
+    # Pythonic Alternative (O(N) using all and zip - OPPE approved)
+    # s = input()
+    # print(all(a <= b for a, b in zip(s, s[1:])))
 
 elif task == 'any_true':
     """
@@ -67,7 +119,18 @@ elif task == 'any_true':
     Expected Output:
     True
     """
-    ...
+    n = int(input())
+    result = False
+    for i in range(n):
+        num = int(input())
+        if num % 3 == 0:
+            result = True
+            break
+    print(result)
+
+    # Pythonic Alternative (Using any() with a generator - OPPE approved)
+    # n = int(input())
+    # print(any(int(input()) % 3 == 0 for _ in range(n)))
 
 elif task == 'manhattan':
     """
@@ -83,7 +146,36 @@ elif task == 'manhattan':
     Expected Output:
     2
     """
-    ...
+    x, y = 0, 0
+    while (user_input := input()) != "STOP":
+        if user_input == "RIGHT":
+            x += 1
+        elif user_input == "LEFT":
+            x -= 1
+        elif user_input == "UP":
+            y += 1
+        elif user_input == "DOWN":
+            y -= 1
+    print(abs(x-0) + abs(y-0))
+
+    # Pythonic Alternative 1 (Using Match-Case - Python 3.10+)
+    # x, y = 0, 0
+    # while (direction := input()) != "STOP":
+    #     match direction:
+    #         case "RIGHT": x += 1
+    #         case "LEFT":  x -= 1
+    #         case "UP":    y += 1
+    #         case "DOWN":  y -= 1
+    # print(abs(x) + abs(y))
+
+    # Pythonic Alternative 2 (Using Dictionary Mapping)
+    # moves = {"RIGHT": (1, 0), "LEFT": (-1, 0), "UP": (0, 1), "DOWN": (0, -1)}
+    # x, y = 0, 0
+    # while (direction := input()) != "STOP":
+    #     dx, dy = moves.get(direction, (0, 0))
+    #     x += dx
+    #     y += dy
+    # print(abs(x) + abs(y))
 
 else:
     print("Invalid Task")
