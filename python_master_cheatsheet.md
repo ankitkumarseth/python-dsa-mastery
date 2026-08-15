@@ -54,6 +54,7 @@ replaced = s.replace("world", "Python") # "hello Python"
 **OPPE Gotcha (Immutability)**: Trying to modify a character by index (`s[0] = 'x'`) throws a TypeError. You MUST re-slice: `s = 'x' + s[1:]`.
 
 **OPPE Gotcha (Splitting)**: `"".split("-")` returns `[""]` (a list containing one empty string), but `"a".split("-")` returns `["a"]`. However, `"".split()` (with no arguments) handles whitespace properly and returns `[]`.
+**OPPE Gotcha (`splitlines()` vs `split('\n')`)**: Always use `.splitlines()` when parsing multi-line text! `split('\n')` leaves an empty string `""` at the end of your list if the text ends with a newline, and fails to handle Windows `\r\n` carriage returns properly. `splitlines()` safely handles both.
 
 **OPPE Gotcha (Alignment / Patterns)**: For drawing ASCII patterns, do not use nested loops. Use string multiplication (`"*" * 5`) and built-in alignment: `"x".center(5)`, `s.rjust(5)`, or `s.zfill(3)`.
 
@@ -98,8 +99,13 @@ arr.extend([50, 60])    # Appends multiple elements to the end: O(K)
 
 **Finding and Counting Elements**
 ```python
-count_of_twos = arr.count(2)  # Counts occurrences of 2 without a loop!
+count_of_twos = arr.count(2)  # Counts exact occurrences without a loop!
 first_index = arr.index(20)   # Returns index of first occurrence of 20
+
+# Pro-Tip: The Boolean Counting Trick
+# If you need to count occurrences of a *complex condition*, use sum() with a generator!
+# True evaluates to 1, False evaluates to 0.
+even_count = sum(x % 2 == 0 for x in arr) 
 ```
 
 **Finding the Last Index in a List (The Reverse Trick)**
@@ -252,6 +258,12 @@ counts = Counter([1, 1, 2, 3, 3, 3])
 print(counts[3])       # Returns 3
 print(counts[99])      # Returns 0 (No KeyError!)
 print(counts.most_common(1)) # Returns [(3, 3)]
+
+# OPPE Pro-Tip: Finding the most frequent element in O(N) time
+# .most_common(1) returns a list with one tuple -> e.g. [('a', 5)]
+# [0] grabs the first tuple -> ('a', 5)
+# [0] grabs the first item in the tuple (the element itself) -> 'a'
+mode = Counter(['a', 'a', 'b']).most_common(1)[0][0]
 ```
 
 **2. `defaultdict` (Grouping / Graph Adjacency Lists)**
@@ -285,6 +297,10 @@ scores = [100, 95]
 
 # enumerate(["Alice", "Bob"]) yields: (0, "Alice"), (1, "Bob")
 # zip(names, scores) yields: ("Alice", 100), ("Bob", 95)
+
+# Pro-Tip: The Adjacent Comparison Trick
+# You can use zip on a list and its own slice to iterate over adjacent pairs without tracking indices!
+# zip(arr, arr[1:]) yields: (arr[0], arr[1]), (arr[1], arr[2]), ...
 ```
 
 **1. Tuple Unpacking (For Loops & Comprehensions)**
@@ -523,10 +539,18 @@ These built-in modules are indispensable for complex DSA problems:
   bisect.bisect_left(arr, target) # Finds insertion point
   bisect.insort(arr, val)         # Inserts and maintains sorted order
   ```
-* **`itertools`**: Combos and perms without recursion.
+* **`itertools`**: Combos, perms, and advanced iterators.
   ```python
-  from itertools import permutations, combinations
+  from itertools import permutations, accumulate, groupby
+  
   perms = list(permutations([1, 2, 3]))
+  
+  # accumulate: Perfect for running totals (prefix sums) without a stateful for-loop
+  running_totals = list(accumulate([1, 2, 3])) # [1, 3, 6]
+  
+  # groupby: The ultimate tool for finding "streaks" or grouping consecutive identical elements
+  # Returns keys and iterator groups (must cast group to list to see contents)
+  streaks = [list(g) for k, g in groupby([1, 1, 2, 1])] # [[1, 1], [2], [1]]
   ```
 * **`math`**:
   ```python
