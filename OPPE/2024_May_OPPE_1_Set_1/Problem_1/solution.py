@@ -8,7 +8,7 @@ def abs_diff_between_sum_and_sum_of_squares(a:int, b:int) -> int:
     sum of squares is 13
     absolute difference is 8
     '''
-    ...
+    return abs((a + b) -(a**2 + b**2))
 
 def swap_except_middle_three(s: str) -> str:
     '''
@@ -22,7 +22,8 @@ def swap_except_middle_three(s: str) -> str:
         "firstabclast1" -> "last1abcfirst"
         "abcdefghi" -> "ghidefabc"
     '''
-    ...
+    m = len(s) // 2
+    return s[m+2:] + s[m-1:m+2] + s[:m-1:]
 
 def interleave_lists(list1, list2, list3):
     '''
@@ -35,13 +36,13 @@ def interleave_lists(list1, list2, list3):
         list3 = [(1,1),(2,2),(3,3)]
         output = [1, 'a', (1,1), 2, 'b', (2,2), 3, 'c', (3,3)]
     '''
-    ...
+    return [item for group in zip(list1, list2, list3) for item in group]
 
 def has_more_than_5_unique_digits(num: int) -> bool:
     '''
     Determine if a given integer has more than 5 unique digits.
     '''
-    ...
+    return len(set(str(num))) > 5
 
 def final_position(pos: tuple, vel: tuple, time:int) -> tuple:
     '''
@@ -50,7 +51,9 @@ def final_position(pos: tuple, vel: tuple, time:int) -> tuple:
 
     Hint: final position = intial position + velocity * time
     '''
-    ...
+    pos_x, pos_y = pos
+    vel_x, vel_y = vel
+    return pos_x + vel_x * time, pos_y + vel_y * time
 
 def remove_keys_not_in_list(d: dict, l: list) -> None:
     '''
@@ -61,4 +64,7 @@ def remove_keys_not_in_list(d: dict, l: list) -> None:
         Modifying a dict while iterating over it will give an error in python.
         So, make a copy of the dict keys and then iterate over it.
     '''
-    ...
+    keys_to_delete = set(d.keys()) - set(l)
+    for key in keys_to_delete:
+        del d[key]
+

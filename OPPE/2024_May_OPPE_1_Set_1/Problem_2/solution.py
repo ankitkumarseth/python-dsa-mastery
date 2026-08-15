@@ -1,3 +1,4 @@
+import re
 def is_all_same_word_twice(strings: list) -> bool:
     '''
     Checks if all strings follow the format where
@@ -9,4 +10,5 @@ def is_all_same_word_twice(strings: list) -> bool:
     Returns:
         bool: True if all strings are of the given format, otherwise False.
     '''
-    ...
+    pattern = re.compile(r"^([a-zA-Z]+)-\1$")
+    return all(pattern.match(string) for string in strings)
