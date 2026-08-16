@@ -1,15 +1,5 @@
-import sys
-
-def solve():
-    # Read from file if sys.argv[1] is provided, else from stdin
-    if len(sys.argv) > 1:
-        with open(sys.argv[1], 'r') as f:
-            content = f.read()
-    else:
-        content = sys.stdin.read()
-        
-    # Write your logic here
-    ...
-
 if __name__ == '__main__':
-    solve()
+    filename = "test_input.txt"
+    # Write your code to read the file and print the result.
+    # use the variable filename for the name of the file.
+    pass
