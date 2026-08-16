@@ -1,0 +1,11 @@
+10
+Jane Smith,32.4,2024-04-12
+Carol White,128.65,2024-05-31
+Alice Brown,199.76,2023-12-16
+Carol White,240.4,2024-06-30
+Alice Brown,11.27,2023-12-30
+Alice Brown,484.18,2024-04-11
+Alice Brown,220.31,2024-05-29
+Alice Brown,12.74,2023-09-22
+John Doe,426.42,2024-06-14
+John Doe,426.39,2024-03-24

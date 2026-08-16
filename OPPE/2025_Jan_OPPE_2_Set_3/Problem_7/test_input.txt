@@ -1,0 +1,6 @@
+2000,file1.jpg
+890,file2.txt
+30500,file3.JPEG
+12000,file4.png
+40000,file5.gif
+490,file6.docx

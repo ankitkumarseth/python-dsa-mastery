@@ -1,0 +1,6 @@
+2. Explicit is better than implicit.
+4. Complex is better than complicated.
+1. Beautiful is better than ugly.
+5. Flat is better than nested.
+3. Simple is better than complex.
+3,1,5,2,4
