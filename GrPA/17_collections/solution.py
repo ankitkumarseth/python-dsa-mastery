@@ -8,7 +8,8 @@ def reverse_first_half(t: tuple) -> tuple:
 
     Return: tuple - a new tuple with the first half reversed.
     '''
-    pass
+    mid = len(t) // 2
+    return t[:mid][::-1] + t[mid:]
 
 def delete_first_three(l: list) -> None:
     '''
@@ -19,7 +20,9 @@ def delete_first_three(l: list) -> None:
 
     Return: None - the list is modified in place.
     '''
-    pass
+    # for _ in range(3):
+    #     l.pop(0) if l else None
+    del l[:3]
 
 def number_of_unique_common_digits(n1: int, n2: int) -> int:
     '''
@@ -32,7 +35,7 @@ def number_of_unique_common_digits(n1: int, n2: int) -> int:
     Return:
     int - the number of unique common digits.
     '''
-    pass
+    return len(set(str(n1)) & set(str(n2)))
 
 def final_position(pos: tuple, vel: tuple, time:int) -> tuple:
     '''
@@ -49,4 +52,7 @@ def final_position(pos: tuple, vel: tuple, time:int) -> tuple:
     Returns:
         tuple[int]: A tuple representing the displacement (dx, dy).
     '''
-    pass
+    x1, y1 = pos
+    vx, vy = vel
+    dx, dy = x1 + vx*time, y1 + vy*time
+    return dx, dy

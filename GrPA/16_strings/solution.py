@@ -1,3 +1,6 @@
+from collections import Counter
+
+
 def is_odd_indices_alpha_and_even_indices_digits(string: str) -> bool:
     '''
     Given a string, check if all the odd indices are alphabets and the even indices are digits.
@@ -10,7 +13,7 @@ def is_odd_indices_alpha_and_even_indices_digits(string: str) -> bool:
     Return:
     bool - True if all odd indices are alphabets and even indices are digits, else False
     '''
-    pass
+    return all(char.isdigit() for char in string[::2]) and all(char.isalpha() for char in string[1::2])
 
 def has_a_in_second_half(s: str) -> bool:
     '''
@@ -22,7 +25,8 @@ def has_a_in_second_half(s: str) -> bool:
 
     Return: bool - True if "a" or "A" is found in the second half, else False.
     '''
-    pass
+    mid = len(s) // 2
+    return 'a' in s[mid:].lower()
 
 def most_occuring_first_letter(passage: str) -> str:
     '''
@@ -35,7 +39,9 @@ def most_occuring_first_letter(passage: str) -> str:
     Returns:
         str: The most frequently occurring first letter in lowercase.
     '''
-    pass
+    first_letters = [word[0].lower() for word in passage.split()]
+    # return max(set(first_letters), key=first_letters.count)
+    return Counter(first_letters).most_common(1)[0][0]
 
 def remove_edges(s: str) -> str:
     '''
@@ -47,4 +53,4 @@ def remove_edges(s: str) -> str:
 
     Return: str - a string with first and last two characters removed.
     '''
-    pass
+    return s[2:-2]

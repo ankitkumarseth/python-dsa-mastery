@@ -3,14 +3,14 @@ def triangular(n: int) -> int:
     Write a recursive function named triangular that accepts a positive integer n 
     as argument and returns the sum of the first n positive integers.
     '''
-    pass
+    return  n + triangular(n-1) if n > 0 else 0
 
 def factorial(n: int) -> int:
     '''
     Write a recursive function named factorial that accepts a positive integer n 
     as argument and returns the factorial of n.
     '''
-    pass
+    return n * factorial(n-1) if n > 0 else 1
 
 def multiply(a: int, b: int) -> int:
     '''
@@ -18,23 +18,27 @@ def multiply(a: int, b: int) -> int:
     a and b as argument and returns their product. You can only use + and - operators. 
     You are not allowed to use the * symbol anywhere in your code!
     '''
-    pass
+    return a + multiply(a, b-1) if b > 0 else 0
 
 def logarithm(x: int) -> int:
     '''
     Write a recursive function named logarithm that accepts a positive integer x 
     (which is a power of 2) as argument and returns log2(x).
     '''
-    pass
+    if x == 1:
+        return 0
+    return 1 + logarithm(x // 2)
 
 def palindrome(word: str) -> bool:
     '''
     Write a recursive function named palindrome that accepts a string word as argument 
     and returns True if it is a palindrome and False otherwise.
     '''
-    pass
+    if len(word) <= 1:
+        return True
+    return palindrome(word[1:-1]) if word[0] == word[-1] else False
 
-def spiral_iterative(left: int, right: int, n: int) -> float:
+def spiral_iterative(left: float, right: float, n: int) -> float:
     '''
     An iterative function to compute the x-coordinate of the nth arm of the spiral.
     
@@ -45,9 +49,15 @@ def spiral_iterative(left: int, right: int, n: int) -> float:
     Return:
         result: float - the x-coordinate of P_n
     '''
-    pass
+    if n == 1:
+        return right
+    for _ in range(n-1):
+        avg = (left + right) / 2
+        left = right
+        right = avg
+    return right
 
-def spiral_recursive(left: int, right: int, n: int) -> float:
+def spiral_recursive(left: float, right: float, n: int) -> float:
     '''
     A recursive function to compute the x-coordinate of the nth arm of the spiral.
     
@@ -58,7 +68,10 @@ def spiral_recursive(left: int, right: int, n: int) -> float:
     Return:
         result: float - the x-coordinate of P_n
     '''
-    pass
+    if n == 1:
+        return right
+    avg = (left + right) / 2
+    return spiral_recursive(right, avg, n - 1)
 
 def count(L: list, word: str) -> int:
     '''
@@ -66,7 +79,9 @@ def count(L: list, word: str) -> int:
     This function should return the number of occurrences of word in L.
     You cannot use the built-in count method for lists.
     '''
-    pass
+    if not L:
+        return 0
+    return (1 if L[0] == word else 0) + count(L[1:], word)
 
 def non_decreasing(L: list) -> bool:
     '''
@@ -74,7 +89,9 @@ def non_decreasing(L: list) -> bool:
     of integers as argument and returns True if the elements are sorted in 
     non-decreasing order from left to right, and False otherwise.
     '''
-    pass
+    if len(L) < 2:
+        return True
+    return non_decreasing(L[1:]) if L[0] <= L[1] else False
 
 def uniq(L: list) -> list:
     '''
@@ -82,7 +99,12 @@ def uniq(L: list) -> list:
     and returns a new list after removing all duplicates from it. Your function must 
     retain the last occurrence of each distinct element in the list.
     '''
-    pass
+    if len(L) < 2:
+        return L
+    if L.count(L[0]) == 1:
+        return [L[0]] + uniq(L[1:])
+    else:
+        return uniq(L[1:])
 
 def search(L: list, k: int) -> bool:
     '''
@@ -90,7 +112,15 @@ def search(L: list, k: int) -> bool:
     and an integer k. The function should return True if k is found in the list L, 
     and False otherwise.
     '''
-    pass
+    if len(L) == 0:
+        return False
+    mid = len(L) // 2
+    if L[mid] == k:
+        return True
+    elif k < L[mid]:
+        return search(L[:mid], k)
+    else:
+        return search(L[mid+1:], k)
 
 def insert(L: list, x: int) -> list:
     '''
@@ -98,7 +128,13 @@ def insert(L: list, x: int) -> list:
     integer x as arguments. It should return a sorted list with the element x inserted 
     into the input list at the right place.
     '''
-    pass
+    if not L:
+        return [x]
+    if x < L[0]:
+        return [x] + L
+
+    return [L[0]] + insert(L[1:], x)
+
 
 def isort(L: list) -> list:
     '''
@@ -106,7 +142,9 @@ def isort(L: list) -> list:
     as argument. It should return a sorted list in ascending order. 
     isort must make use of insert.
     '''
-    pass
+    if len(L) < 2:
+        return L
+    return insert(isort(L[1:]), L[0])
 
 def poly(L: list, x_0: float) -> float:
     '''
@@ -114,14 +152,27 @@ def poly(L: list, x_0: float) -> float:
     and a real number x_0 as arguments. It should return the polynomial evaluated 
     at the value x_0.
     '''
-    pass
+    if len(L) == 0:
+        return 0
+    return L[0] + poly(L[1:], x_0) * x_0
+
+def multiply_matrix(mat1, mat2) -> list:
+    n = len(mat1)
+    result = [[0] * n for _ in range(n)]
+    for i in range(n):
+        for j in range(n):
+            for k in range(n):
+                result[i][j] += mat1[i][k] * mat2[k][j]
+    return result
 
 def power(A: list, m: int) -> list:
     '''
     Write a recursive function named power that accepts a square matrix A 
     and a positive integer m as arguments and returns A^m.
     '''
-    pass
+    if m == 1:
+        return A
+    return multiply_matrix(A, power(A, m-1))
 
 def subset_sum(L: list, s: int) -> bool:
     '''
@@ -129,4 +180,11 @@ def subset_sum(L: list, s: int) -> bool:
     integers L and a positive integer s as arguments. Return True if you can withdraw 
     some subset of coins whose combined worth is s, return False otherwise.
     '''
-    pass
+    if s == 0:
+        return True
+    elif s < 0:
+        return False
+    elif s > 0 and not L:
+        return False
+
+    return subset_sum(L[1:], s-L[0]) or subset_sum(L[1:], s)

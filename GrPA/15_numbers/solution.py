@@ -7,7 +7,8 @@ def seconds_to_minute_seconds(seconds: int) -> tuple:
 
     Return: tuple - a tuple of (minutes, remaining_seconds).
     '''
-    pass
+    # return seconds // 60, seconds % 60
+    return divmod(seconds, 60)
 
 def create_indexed_dict(items: list) -> dict:
     '''
@@ -19,7 +20,7 @@ def create_indexed_dict(items: list) -> dict:
     Returns:
         dict: A dictionary with indices as keys and items as items.
     '''
-    pass
+    return dict(enumerate(items))
 
 def manhattan_distance_via_b(a: tuple, b: tuple, c: tuple) -> int:
     '''
@@ -36,6 +37,11 @@ def manhattan_distance_via_b(a: tuple, b: tuple, c: tuple) -> int:
     Returns:
         int: The Manhattan distance from point a to point c via point b.
     '''
+    x1, y1 = a
+    x2, y2 = b
+    x3, y3 = c
+    return abs(x1 - x2) + abs(y1 - y2) + abs(x2 - x3) + abs(y2 - y3)
+
     pass
 
 def is_right_triangle_with_even_sides(a:int,b:int,c:int) -> bool:
@@ -55,4 +61,4 @@ def is_right_triangle_with_even_sides(a:int,b:int,c:int) -> bool:
     Return:
     bool - True if the sides form a right triangle and the perpendicular sides are even, else False
     '''
-    pass
+    return a ** 2 + b ** 2 == c ** 2 and a % 2 == 0 and b % 2 == 0

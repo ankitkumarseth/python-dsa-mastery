@@ -9,7 +9,9 @@ def reverse(L: list) -> list:
     Returns:
         list: The reversed list.
     '''
-    pass
+    if not L:
+        return L
+    return [L[-1]] + reverse(L[:-1])
 
 def linear(P: list, Q: list, k: int) -> bool:
     '''
@@ -26,7 +28,11 @@ def linear(P: list, Q: list, k: int) -> bool:
     Returns:
         bool: True if the conditions are satisfied, else False.
     '''
-    pass
+    if len(P) != len(Q):
+        return False
+    if not P:
+        return True
+    return P[0] == k * Q[0] and linear(P[1:], Q[1:], k)
 
 def collatz(n: int) -> int:
     '''
@@ -44,7 +50,12 @@ def collatz(n: int) -> int:
     Returns:
         int: The number of times f(n) has to be applied to reach 1.
     '''
-    pass
+    if n == 1:
+        return 0
+    if n % 2 == 0:
+        return collatz(n // 2) + 1
+    else:
+        return collatz(3* n + 1) + 1
 
 def steps(n: int) -> int:
     '''
@@ -58,7 +69,12 @@ def steps(n: int) -> int:
     Returns:
         int: The total number of ways to climb the steps.
     '''
-    pass
+    if n < 0:
+        return 0
+    if n == 0:
+        return 1
+    return steps(n - 1) + steps(n - 2) + steps(n - 3)
+
 
 def ancestry(P: dict, present: str, past: str) -> list:
     '''
@@ -74,4 +90,6 @@ def ancestry(P: dict, present: str, past: str) -> list:
     Returns:
         list: A sequence of ancestors from present to past.
     '''
-    pass
+    if present  == past:
+        return [past]
+    return [present] + ancestry(P, P.get(present), past)
