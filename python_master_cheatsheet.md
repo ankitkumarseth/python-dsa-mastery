@@ -56,6 +56,8 @@ replaced = s.replace("world", "Python") # "hello Python"
 **OPPE Gotcha (Splitting)**: `"".split("-")` returns `[""]` (a list containing one empty string), but `"a".split("-")` returns `["a"]`. However, `"".split()` (with no arguments) handles whitespace properly and returns `[]`.
 **OPPE Gotcha (`splitlines()` vs `split('\n')`)**: Always use `.splitlines()` when parsing multi-line text! `split('\n')` leaves an empty string `""` at the end of your list if the text ends with a newline, and fails to handle Windows `\r\n` carriage returns properly. `splitlines()` safely handles both.
 
+**OPPE Gotcha (Empty Strings & `.isdigit()`)**: Calling `"".isdigit()` returns `False`. If you need "vacuous truth" (where an empty string should be considered valid), use `all()` instead: `all(c.isdigit() for c in s)`. This safely returns `True` for empty strings.
+
 **OPPE Gotcha (Alignment / Patterns)**: For drawing ASCII patterns, do not use nested loops. Use string multiplication (`"*" * 5`) and built-in alignment: `"x".center(5)`, `s.rjust(5)`, or `s.zfill(3)`.
 
 ### Slicing `[start:stop:step]`
@@ -148,6 +150,8 @@ print(point[0])             # 10 (Access is O(1))
 ```
 **OPPE Gotcha**: Tuples don't support element-wise arithmetic. `(1, 2) + (3, 4)` is `(1, 2, 3, 4)`, not `(4, 6)`. You have to do math on individual indexes manually `(a[0]+b[0], a[1]+b[1])`.
 **OPPE Gotcha**: Tuple multiplication repeats elements! `(0,) * 3` gives `(0, 0, 0)`.
+
+**OPPE Pro-Tip (Tuple Concatenation & Slicing)**: While tuples are immutable, you can easily create new ones by concatenating slices. `t = (1, 2, 3, 4)`. Reversing the first half: `t[:2][::-1] + t[2:]` yields `(2, 1, 3, 4)`.
 
 ### Dictionaries (Java `HashMap`)
 Dictionaries are Python's Hash Maps. They store key-value pairs and offer $O(1)$ lookups.
@@ -283,6 +287,7 @@ scores["Alice"] += 10
 *   `max(arr)`, `min(arr)`, `sum(arr)`: Instantly compute aggregates.
 *   `any(condition for x in arr)`: Returns `True` if *at least one* element matches. Pass a lazy generator expression `(x for x in arr)` to ensure it stops evaluating exactly when it hits `True`, giving you optimal $O(N)$ early-exit performance.
 *   `all(condition for x in arr)`: Returns `True` if *every* element matches.
+*   `divmod(a, b)`: Returns a tuple `(quotient, remainder)`. Much faster and cleaner than doing `a // b` and `a % b` separately!
 
 ---
 
@@ -525,6 +530,10 @@ top_student = max(students, key=lambda x: x["score"])
 # Example: Sort strings by length, then alphabetically
 words = ["banana", "apple", "kiwi", "pear"]
 words.sort(key=lambda x: (len(x), x)) 
+
+# Pro-Tip: Finding the *index* of a max/min element based on a condition
+# Example: Find the index of the row with the most zeros in a matrix
+best_index = max(range(len(matrix)), key=lambda i: matrix[i].count(0))
 ```
 
 ---
@@ -567,7 +576,32 @@ These built-in modules are indispensable for complex DSA problems:
 
 ---
 
-## 9. Bitwise Operations
+## 9. Recursion & Dynamic Programming
+
+### The "Leap of Faith"
+When writing recursive functions, trust your base cases. Do not try to manually unravel or trace the combinations (like `steps(2) = 2`). Let the recursion compute it!
+```python
+# Example: Number of ways to climb `n` stairs (1, 2, or 3 steps at a time)
+def steps(n: int) -> int:
+    if n < 0: return 0     # Invalid path
+    if n == 0: return 1    # Valid path reached
+    # Leap of faith: just sum the recursive branches!
+    return steps(n-1) + steps(n-2) + steps(n-3)
+```
+
+### State Management without Global Variables
+In Python, you should avoid global variables. Instead, return state upwards!
+```python
+# Counting depth: Add 1 to the recursive return
+def collatz(n: int) -> int:
+    if n == 1: return 0
+    if n % 2 == 0: return collatz(n // 2) + 1
+    return collatz(3 * n + 1) + 1
+```
+
+---
+
+## 10. Bitwise Operations
 
 ### Part A: The Fundamentals
 You must understand what the operators do to binary strings.
@@ -599,7 +633,7 @@ n = n & (n - 1) # 1000 (8)
 
 ---
 
-## 10. File Handling (The Pythonic Way)
+## 11. File Handling (The Pythonic Way)
 
 Unlike Java's `BufferedReader`, Python uses `with open()` which automatically safely closes the file.
 
