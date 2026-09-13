@@ -15,19 +15,10 @@ class Trees:
         """
         Given the root of a binary tree, invert the tree, and return its root.
         """
-        # TODO: Implement this using Recursion (DFS).
-        if root is None:
-            return None
-        root.left, root.right = root.right, root.left
-        self.invert_tree(root.left)
-        self.invert_tree(root.right)
-        return root
+        pass
 
     def max_depth(self, root: Optional[TreeNode]) -> int:
         """
         Given the root of a binary tree, return its maximum depth.
         """
-        if root is None:
-            return 0
-
-        return max(self.max_depth(root.right), self.max_depth(root.left))+ 1
+        pass
