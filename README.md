@@ -1,31 +1,37 @@
-# IITM Python Practice
+# Python & DSA Mastery
 
-A structured repository for practicing and mastering Python concepts for IITM coursework. 
+A unified workspace for mastering Core Python engineering and Data Structures & Algorithms (DSA). This repository is divided into two distinct tracks to streamline interview preparation and deep conceptual learning.
 
-## Structure
+## 1. Python Core (IITM Practice)
 
-The repository is divided into two main domains:
-1. **GrPA (Graded Programming Assignments)**: Dedicated folders for topic-by-topic mastery (e.g., Loops, Collections, Dictionaries).
-2. **OPPE (Online Proctored Programming Exams)**: Mixed-topic mock exams to test your comprehensive knowledge. The repository includes 14 fully scaffolded OPPE sets across 2024 and 2025 (e.g., 2024 May, 2024 Sept, 2025 Jan) for extensive practice.
+Located in the root directory (GrPA, PPA, OPPE folders), this track focuses on deep Python syntax and advanced mechanics.
 
-## Repository Branches
+*   **GrPA/PPA**: Dedicated folders for topic-by-topic mastery (e.g., Loops, Collections, Dictionaries).
+*   **OPPE**: Mixed-topic mock exams to test comprehensive knowledge, including 14 fully scaffolded sets from 2024 and 2025.
+*   **Master Cheatsheet**: Refer to `python_master_cheatsheet.md` for advanced syntax, functional programming, and recursion patterns.
 
-To maximize practice value, this repository utilizes two primary branches:
-1. **`main`**: The practice branch. Contains all folder structures, problem descriptions (`README.md`), unit tests, and heavily documented `solution.py` files with their implementations wiped (only `pass` remains). 
-2. **`solution`**: The answer key branch. Contains the fully working, tested implementations for every problem in the repository. If you get stuck while practicing on `main`, you can switch to `solution` to see the reference answers!
+### Branching Strategy
+*   **`main`**: The practice branch. Contains all problems and tests, but implementations are wiped (`pass`).
+*   **`solution`**: The answer key branch. Contains the fully working, tested implementations for every Python problem.
 
-## How to Practice
+## 2. DSA Mastery
 
-Every question comes with:
-* `README.md`: The problem statement and instructions.
-* `solution.py`: Your workspace to write the code.
-* `test_solution.py`: A robust test suite.
+Located in the `dsa/` directory, this track is heavily tailored toward cracking top-tier engineering interviews, specifically targeting the LeetCode 150 patterns.
 
-To check your answer for a specific topic, navigate to its folder in your terminal (or use your IDE's test runner) and run `pytest`. 
+*   **Curriculum**: See `dsa/dsa_master_curriculum.md` for the prioritized checklist of patterns (Arrays, Two Pointers, Linked Lists, Trees, etc.).
+*   **Implementations**: The `dsa/src/` folder contains clean, Principal-level Python implementations of core algorithms.
+*   **Testing**: The `dsa/tests/` folder contains Pytest suites to validate every algorithm's edge cases.
+
+## Getting Started
+
+To validate your code for either track, navigate to the specific problem or pattern folder and run pytest:
 
 ```bash
+# Testing a Python Core problem
 cd GrPA/10_dictionary_basics
 pytest
-```
 
-> Note: Certain problems enforce strict rules (e.g., no `for` loops or `if` statements). These are automatically checked by the testing suite when applicable.
+# Testing a DSA pattern
+cd dsa
+pytest tests/test_two_pointers.py
+```
