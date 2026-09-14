@@ -1,24 +1,13 @@
-int_iterable = None
-string_iterable = None
-some_value = None
-some_collection = None
-some_iterable = None
-another_iterable = None
-yet_another_iterable = None
-empty_list = None
-empty_set = None
-empty_tuple = None
-singleton_list = None
-singleton_set = None
-singleton_tuple = None
-a_falsy_list = None
-a_falsy_set = None
-a_truthy_tuple = None
-int_iterable_min = None
-int_iterable_max = None
-int_iterable_sum = None
-int_iterable_len = None
-int_iterable_sorted = None
-int_iterable_sorted_desc = None
-is_some_value_in_some_collection = None
-all_iterables = None
+# The values of the below variables will be changed by the evaluator
+int_iterable = range(1,10,3)
+string_iterable = ["Apple","Orange", "Banana"]
+some_value = 4
+some_collection = [1,2,3] # list | set | tuple
+
+some_iterable = (1,2,3)
+another_iterable = {"apple", "banana", "cherry"} # can be any iterable
+yet_another_iterable = range(1,10)
+
+# --- STUDENT CODE BEGINS ---
+
+# TODO: Implement variable declarations

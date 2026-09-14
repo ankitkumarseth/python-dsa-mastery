@@ -1,25 +1,84 @@
+# NOTE: Do NOT use a `for` loop anywhere in this file.
+
 task = input()
-if task == 'sum_until_0':
-    '\n    Example Input:\n    5\n    3\n    2\n    0\n    Expected Output:\n    10\n    '
+
+if task == "sum_until_0":
+    """
+    Example Input:
+    5
+    3
+    2
+    0
+    Expected Output:
+    10
+    """
     pass
-elif task == 'total_price':
-    '\n    Example Input:\n    2 50\n    1 100\n    END\n    Expected Output:\n    200\n    '
+elif task == "total_price":
+    """
+    Example Input:
+    2 50
+    1 100
+    END
+    Expected Output:
+    200
+    """
     pass
-elif task == 'only_ed_or_ing':
-    '\n    Example Input:\n    Reading\n    start\n    STOP\n    Expected Output:\n    Reading\n    '
+elif task == "only_ed_or_ing":
+    """
+    Example Input:
+    Reading
+    start
+    STOP
+    Expected Output:
+    Reading
+    """
     pass
-elif task == 'reverse_sum_palindrome':
-    '\n    Example Input:\n    56\n    -1\n    Expected Output:\n    56\n    '
+elif task == "reverse_sum_palindrome":
+    """
+    Example Input:
+    56
+    -1
+    Expected Output:
+    56
+    """
     pass
-elif task == 'double_string':
-    '\n    Example Input:\n    hello\n\n    Expected Output:\n    hellohello\n    '
+elif task == "double_string":
+    """
+    Example Input:
+    hello
+
+    Expected Output:
+    hellohello
+    """
     pass
-elif task == 'odd_char':
-    '\n    Example Input:\n    Hello\n    WORLD.\n    Expected Output:\n    Hlo WRD\n    '
+elif task == "odd_char":
+    """
+    Example Input:
+    Hello
+    WORLD.
+    Expected Output:
+    Hlo WRD
+    """
     pass
-elif task == 'only_even_squares':
-    '\n    Example Input:\n    3\n    4\n    NAN\n    Expected Output:\n    16\n    '
+elif task == "only_even_squares":
+    """
+    Example Input:
+    3
+    4
+    NAN
+    Expected Output:
+    16
+    """
     pass
-elif task == 'only_odd_lines':
-    '\n    Example Input:\n    one\n    two\n    three\n    END\n    Expected Output:\n    three\n    one\n    '
+elif task == "only_odd_lines":
+    """
+    Example Input:
+    one
+    two
+    three
+    END
+    Expected Output:
+    three
+    one
+    """
     pass
