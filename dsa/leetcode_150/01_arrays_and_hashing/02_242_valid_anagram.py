@@ -3,11 +3,14 @@ LeetCode 242: Valid Anagram (Easy)
 
 Given two strings s and t, return true if t is an anagram of s, and false otherwise.
 """
+from collections import Counter
+
 import pytest
 
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
-        pass
+        return Counter(s) == Counter(t)
+        # return sorted(s) == sorted(t)
 
 # ==========================
 # PYTEST SUITE
