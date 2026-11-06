@@ -91,6 +91,25 @@ Trade space for time. By remembering what we have already seen via a Hash Set or
 * "Find top $K$ frequent elements in $\mathcal{O}(N)$ time" $\rightarrow$ Bucket Sort (frequencies as indices).
 * "Check for duplicates or anagrams" $\rightarrow$ Hash Map or frequency array.
 
+### Specific Arrays & Hashing Tricks
+
+#### 1. The `ord()` Array Map Trick
+When you need to count the frequency of lowercase English letters ('a' - 'z') without using a Hash Map, you can use an array of size 26:
+* `ord(char)` returns the integer ASCII value.
+* `ord(char) - ord('a')` maps 'a' to index 0, 'b' to 1, ..., 'z' to 25.
+* **Time Complexity:** $\mathcal{O}(N)$, **Space Complexity:** $\mathcal{O}(1)$ (fixed 26-element array).
+
+#### 2. Frequencies as Bucket Indices (Top K Problems)
+When a problem asks for the "Most Frequent" or "Top K" elements, do not sort the Hash Map ($\mathcal{O}(N \log N)$). Instead, use a modified **Bucket Sort**:
+1. Count frequencies with a Hash Map.
+2. Create an array of empty lists (buckets) of size `len(nums) + 1`.
+3. Let the **index** of the bucket represent the frequency.
+4. Iterate backwards through the buckets to gather the top elements in $\mathcal{O}(N)$ time.
+
+#### 3. `collections.defaultdict` vs `collections.Counter`
+* Use `defaultdict(list)` when you want to group items together (e.g., mapping a sorted string to a list of its anagrams). It avoids KeyError if the key doesn't exist yet.
+* Use `Counter(nums)` to instantly create a frequency map of an array in one line.
+
 ### Canonical Python Template (Prefix Sum with Hash Map)
 ```python
 def subarray_sum_k(nums: list[int], k: int) -> int:
@@ -235,6 +254,15 @@ Linked lists are dynamic collections linked by pointers.
 * **Dummy Head:** `dummy = ListNode(0, head)`. Eliminates edge cases where the head itself needs to be removed, replaced, or merged.
 * **In-Place Reversal:** Maintain `prev`, `curr`, `next_node` pointers.
 * **Fast and Slow Pointers (Floyd's Cycle Finding):** Fast moves 2 steps, Slow moves 1 step. If they meet, there is a cycle. If `fast` hits `None`, there is no cycle.
+```python
+slow, fast = head, head
+while fast and fast.next:
+    slow = slow.next
+    fast = fast.next.next
+    if slow == fast:
+        return True  # Cycle detected
+return False
+```
 
 ### Triggers & Problem Signals
 * "Reverse a linked list (or sublist from $M$ to $N$)".
@@ -262,9 +290,10 @@ def reverse_list(head: Optional[ListNode]) -> Optional[ListNode]:
 ## 7. Trees & Binary Search Trees (DFS, BFS, BST Invariants)
 
 ### Mental Model & Intuition
+* **DFS vs BFS:**
+  * **DFS (Recursion):** Use when asked about depth, paths, subtree validation, or bottom-up aggregation.
+  * **BFS (Queue):** Use `collections.deque`. Use when asked about levels (e.g., "Right side view", "Level order traversal", "Minimum depth to leaf").
 * **Binary Search Tree (BST) Property:** `left.val < root.val < right.val`. In-order traversal visits nodes in strictly sorted ascending order!
-* **DFS (Recursion):** Best for subtree aggregation, path finding, max depth, lowest common ancestor.
-* **BFS (Queue):** Best for level-by-level traversal, minimum depth to leaf, zigzag view.
 
 ### Triggers & Problem Signals
 * "Level order traversal / zigzag view" $\rightarrow$ BFS with `collections.deque`.
